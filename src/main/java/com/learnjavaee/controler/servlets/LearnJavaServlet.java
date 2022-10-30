@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Servlet implementation class LearnJavaServlet
@@ -23,10 +24,13 @@ public class LearnJavaServlet extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Cette méthode devrait recevoir la requête HTTP en paramètre, effecturer une action puis renvoyer une réponse
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// On recupère dans un premiere temps la référence de notre servlet dans le context courant dans lequel il est exécuté
+		// Ensuite on recupère l'object RequestDispatcher qui permet de lier une requête à une ressource
+		// Enfin on applique la redirection
+		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/learn.jsp").forward(request, response);
 	}
 
 	/**
