@@ -4,6 +4,8 @@
 ### I. Introduction
 <a name="modele-mvc"></a>
 ### II. Modèle MVC
+<a name="Installation"></a>
+### III. Installation
 ***
 #### I. Introduction
 Nous allons décrire chaque étape de notre apprentissage de **la spécification JAVA EE**. 
@@ -24,4 +26,10 @@ Le contrôleur représente l'objet **SERVLET** dans les spécifications JAVA EE.
 * **Vue** *: La vue représente l'interface Web à travers laquelle les utilisateurs comminiquent avec l'application WEB. Elle représente l'objet **JSP** dans les spécification JAVAEE.
 
 Enfin tout au long de ce cours nous allons utiliser le framework pure JAVA EE. Et notons qu'il existe des frameworks (STRUTS, JSF, HIBBERNATE et SPRING) basés sur le modèle MVC permettant de développer des applications JAVA EE rapidement.
+
+#### III. Installation
+* Eclipse (https://www.eclipse.org/downloads/) : IDE (Environnement de Développement Intégré), va nous permettre d'écrire nos code sources et de complier notre application WEB. 
+Après installation, mettre dans le bon format (UTF-8) les fichiers HTML, XML, JSP, CSS etc..
+* Tomcat (https://tomcat.apache.org/download-80.cgi) : Conteneur Web en d'autres termes le serveur sur lequel notre application sera déployée.  
+
 
