@@ -27,6 +27,9 @@ public class LearnJavaServlet extends HttpServlet {
 	 * Cette méthode devrait recevoir la requête HTTP en paramètre, effecturer une action puis renvoyer une réponse
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Echange de données du servlet au JSPs
+		request.setAttribute("userName", "GBEGNON Kossi");
+		request.setAttribute("userOld", 25);
 		// On recupère dans un premiere temps la référence de notre servlet dans le context courant dans lequel il est exécuté
 		// Ensuite on recupère l'object RequestDispatcher qui permet de lier une requête à une ressource
 		// Enfin on applique la redirection
