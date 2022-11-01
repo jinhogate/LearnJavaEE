@@ -1,5 +1,6 @@
 <ul>
   <li> <a href="accueil">ACCEUIL</a> </li>
   <li> <a href="learn">LEARN</a> </li>
-  <li> Item two </li>
+  <li> <a href="auteur">AUTEUR</a> </li>
+  <li> AUTRES </li>
 </ul>
