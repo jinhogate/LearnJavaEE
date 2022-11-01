@@ -1,16 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ include file="includes/entete.jsp" %>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Insert title here</title>
-	</head>
+	<%@ include file="includes/header.jsp" %>
 	<body>
+		<%@ include file="includes/menu.jsp" %>
 		<h1>Bonjour, <% out.print(request.getAttribute("userName"));%>, Nous apprenons ici le JavaEE</h1>
 		<p>
 			<% int old = (int) request.getAttribute("userOld"); %>
-			Vous Ãªtes un <% out.print(old<30?"Jeune":"Vieux"); %> Monsieur! Bonne lecture!
+			Vous êtes un <% out.print(old<30?"Jeune":"Vieux"); %> Monsieur! Bonne lecture!
 		</p>
 		<p>
 			<% while(old!=0){
