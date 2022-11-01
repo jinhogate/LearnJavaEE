@@ -24,14 +24,14 @@ public class LearnJavaServlet extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 * Cette méthode devrait recevoir la requête HTTP en paramètre, effecturer une action puis renvoyer une réponse
+	 * Cette mÃ©thode devrait recevoir la requÃ©te HTTP en paramÃ¨tre, effecturer une action puis renvoyer une rÃ©ponse
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Echange de données du servlet au JSPs
+		// Echange de donnÃ©es du servlet au JSPs
 		request.setAttribute("userName", "GBEGNON Kossi");
 		request.setAttribute("userOld", 25);
-		// On recupère dans un premiere temps la référence de notre servlet dans le context courant dans lequel il est exécuté
-		// Ensuite on recupère l'object RequestDispatcher qui permet de lier une requête à une ressource
+		// On recupÃ¨re dans un premiere temps la rÃ©fÃ©rence de notre servlet dans le context courant dans lequel il est exÃ©cutÃ©
+		// Ensuite on recupÃ¨re l'object RequestDispatcher qui permet de lier une requÃªte Ã  une ressource
 		// Enfin on applique la redirection
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/learn.jsp").forward(request, response);
 	}
