@@ -32,7 +32,10 @@ public class AuteurServlet extends HttpServlet {
 		auteur.setFirstName("Kossi");
 		auteur.setActif(true);
 		
+		String[] titres = {"Titanic","Aquaba","Emile","Sans papier","Pays pauvre"};
+		
 		request.setAttribute("auteur", auteur);
+		request.setAttribute("titres", titres);
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/auteur.jsp").forward(request, response);
 	}
