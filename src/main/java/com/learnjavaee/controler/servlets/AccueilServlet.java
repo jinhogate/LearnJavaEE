@@ -8,12 +8,16 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
+import com.learnjavaee.controlers.ConnectionControler;
+import com.learnjavaee.models.beans.CompteBean;
+
 /**
  * Servlet implementation class AccueilServlet
  */
 public class AccueilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private ConnectionControler connectionControler;
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -41,8 +45,16 @@ public class AccueilServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		connectionControler = new ConnectionControler();
+		CompteBean compte = this.connectionControler.verifierConnextion(request);
+		if(compte!=null) {
+			request.setAttribute("compte", compte);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/accueil.jsp").forward(request, response);
+		}else {
+			request.setAttribute("message", "Vos identifiants sont erronnés, veuillez les resaisir!");
+			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/connection.jsp").forward(request, response);
+		}
+		
 	}
 
 }
