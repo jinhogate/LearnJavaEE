@@ -1,4 +1,3 @@
-<%@ include file="includes/entete.jsp" %>
 <html>
 	<%@ include file="includes/header.jsp" %>
 	<body>
