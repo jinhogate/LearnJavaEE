@@ -4,6 +4,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.util.Map;
 
@@ -47,9 +49,11 @@ public class AccueilServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ConnectionControler connectionControler = new ConnectionControler();
+		HttpSession session = request.getSession();
 		CompteBean compte = connectionControler.verifierConnextion(request);
 		if(compte!=null) {
 			request.setAttribute("compte", compte);
+			session.setAttribute("compteSession", compte);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/accueil.jsp").forward(request, response);
 		}else {
 			request.setAttribute("message", "Vos identifiants sont erronnés, veuillez les resaisir!");
