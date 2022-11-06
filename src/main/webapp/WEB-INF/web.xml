@@ -49,7 +49,22 @@
     <servlet-name>ConnectionServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
-  <!-- La configuration de JSTL : Java Standard Tag Lib -->
+  <servlet>
+    <description></description>
+    <display-name>EnvoieFichierServlet</display-name>
+    <servlet-name>EnvoieFichierServlet</servlet-name>
+    <servlet-class>com.learnjavaee.controler.servlets.EnvoieFichierServlet</servlet-class>
+    <multipart-config>
+	    <location>D:/Learn/Java/JAVAEE/File_server_tampon/</location> <!-- A adapter chez vous -->
+	    <max-file-size>10485760</max-file-size> <!-- 10 Mo -->
+	    <max-request-size>52428800</max-request-size> <!-- 5 x 10 Mo -->
+	    <file-size-threshold>1048576</file-size-threshold> <!-- 1 Mo -->
+  	</multipart-config>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EnvoieFichierServlet</servlet-name>
+    <url-pattern>/fichier</url-pattern>
+  </servlet-mapping>
   <jsp-config>
     <jsp-property-group>
       <url-pattern>*.jsp</url-pattern>
