@@ -18,7 +18,6 @@ public class EnvoieFichierServlet extends HttpServlet {
 	
 	private static final String CHEMIN_FICHIERS = "D:/Learn/Java/JAVAEE/File_server/"; // A changer
        
-	private FichierControler fichierControler;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -30,6 +29,7 @@ public class EnvoieFichierServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getServletContext().getRequestDispatcher("/WEB-INF/pages/fichier.jsp").forward(request, response);
 	}
@@ -37,8 +37,9 @@ public class EnvoieFichierServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		fichierControler = new FichierControler();
+		FichierControler  fichierControler = new FichierControler();
 		// On récupère le champ description comme d'habitude
         String description = request.getParameter("description");
         request.setAttribute("description", description );

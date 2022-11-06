@@ -9,7 +9,7 @@ import com.learnjavaee.models.beans.UserBean;
 import jakarta.servlet.http.HttpServletRequest;
 
 public class ConnectionControler {
-	List<CompteBean> comptes = new ArrayList<CompteBean>();
+	List<CompteBean> comptes = new ArrayList<>();
 	private void init() {
 		// Initialisation des users
 		UserBean user1 = new UserBean();

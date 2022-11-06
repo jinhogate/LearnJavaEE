@@ -1,12 +1,10 @@
 package com.learnjavaee.controler.servlets;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * Servlet implementation class LearnJavaServlet
@@ -27,6 +25,7 @@ public class LearnJavaServlet extends HttpServlet {
 	 *      response) Cette méthode devrait recevoir la requéte HTTP en paramètre,
 	 *      effecturer une action puis renvoyer une réponse
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// Echange de données du servlet au JSPs
@@ -44,6 +43,7 @@ public class LearnJavaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
