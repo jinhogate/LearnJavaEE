@@ -1,6 +1,7 @@
 package com.learnjavaee.controler.servlets;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -25,6 +26,18 @@ public class ConnectionServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Récupération des cookies
+		Cookie[] cookies = request.getCookies();
+		if(cookies!=null) {
+			for(Cookie cookie : cookies) {
+				if(cookie.getName().equals("login")) {
+					request.setAttribute("login", cookie.getValue());
+				}
+				if(cookie.getName().equals("pass")) {
+					request.setAttribute("pass", cookie.getValue());
+				}
+			}
+		}
 		request.getServletContext().getRequestDispatcher("/WEB-INF/pages/connection.jsp").forward(request, response);
 	}
 
