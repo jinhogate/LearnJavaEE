@@ -12,12 +12,12 @@
 				<br>
 				<div>
 					<label for="login">Login</label>
-					<input type="text" id="login" name="login">
+					<input type="text" id="login" name="login" value='<c:out value="${!empty login?login:''}"/>'>
 				</div>
 				<br>
 				<div>
 					<label for="pass">Pass</label>
-					<input type="password" id="pass" name="pass">
+					<input type="password" id="pass" name="pass" value='<c:out value="${!empty pass?pass:''}"/>'>
 				</div>
 				<br>
 				<input type="submit" value="Se Connecter">
