@@ -1,6 +1,7 @@
 package com.learnjavaee.controler.servlets;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -52,8 +53,19 @@ public class AccueilServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		CompteBean compte = connectionControler.verifierConnextion(request);
 		if(compte!=null) {
+			// Envoi information du compte user sur la page à forward
 			request.setAttribute("compte", compte);
+			// Envoi information du compte user dans sa session
 			session.setAttribute("compteSession", compte);
+			// Envoi information identifiant user dans des cookies
+			Cookie cookieLogin = new Cookie("login", compte.getLogin());
+			Cookie cookiePass= new Cookie("pass", compte.getPass());
+			cookieLogin.setComment("Votre login");
+			cookieLogin.setHttpOnly(true);
+			cookieLogin.setMaxAge(60*60);
+			cookieLogin.setSecure(true);
+			response.addCookie(cookieLogin);
+			response.addCookie(cookiePass);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/accueil.jsp").forward(request, response);
 		}else {
 			request.setAttribute("message", "Vos identifiants sont erronnés, veuillez les resaisir!");
