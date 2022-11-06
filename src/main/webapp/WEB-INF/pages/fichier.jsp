@@ -1,6 +1,7 @@
 <html>
 	<%@ include file="includes/header.jsp"%>
 	<body>
+		<%@ include file="includes/menu.jsp" %>
 		<h1>Envoyer un fichier</h1>
     	<c:if test="${ !empty fichier }">
     	<p>	<c:out value="Le fichier ${ fichier } (${ description }) a été uploadé !" /> </p> <br>
