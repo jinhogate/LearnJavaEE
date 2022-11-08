@@ -2,7 +2,7 @@ package com.learnjavaee.controler.servlets;
 
 import java.io.IOException;
 
-import com.learnjavaee.controlers.FichierControler;
+import com.learnjavaee.metier.facade.FichierFacade;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -39,7 +39,7 @@ public class EnvoieFichierServlet extends HttpServlet {
 	 */
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FichierControler  fichierControler = new FichierControler();
+		FichierFacade  fichierFacade = new FichierFacade();
 		// On récupère le champ description comme d'habitude
         String description = request.getParameter("description");
         request.setAttribute("description", description );
@@ -48,7 +48,7 @@ public class EnvoieFichierServlet extends HttpServlet {
         Part part = request.getPart("fichier");
             
         // On vérifie qu'on a bien reçu un fichier
-        String nomFichier = fichierControler.getNomFichier(part);
+        String nomFichier = fichierFacade.getNomFichier(part);
 
         // Si on a bien un fichier
         if (nomFichier != null && !nomFichier.isEmpty()) {
@@ -58,7 +58,7 @@ public class EnvoieFichierServlet extends HttpServlet {
                     .substring(nomFichier.lastIndexOf('\\') + 1);
 
             // On écrit définitivement le fichier sur le disque
-             fichierControler.ecrireFichier(part, nomFichier, CHEMIN_FICHIERS);
+             fichierFacade.ecrireFichier(part, nomFichier, CHEMIN_FICHIERS);
 
             request.setAttribute(nomChamp, nomFichier);
         }

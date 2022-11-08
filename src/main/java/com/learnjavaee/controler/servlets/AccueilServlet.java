@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Map;
 
-import com.learnjavaee.controlers.ConnectionControler;
+import com.learnjavaee.metier.facade.ConnectionFacade;
 import com.learnjavaee.models.beans.CompteBean;
 
 /**
@@ -49,9 +49,9 @@ public class AccueilServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ConnectionControler connectionControler = new ConnectionControler();
+		ConnectionFacade connectionFacade = new ConnectionFacade();
 		HttpSession session = request.getSession();
-		CompteBean compte = connectionControler.verifierConnextion(request);
+		CompteBean compte = connectionFacade.verifierConnextion(request);
 		if(compte!=null) {
 			// Envoi information du compte user sur la page à forward
 			request.setAttribute("compte", compte);

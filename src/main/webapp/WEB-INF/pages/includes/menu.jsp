@@ -15,5 +15,6 @@
   <li> <a href="learn">LEARN</a> </li>
   <li> <a href="fichier">FICHIER</a> </li>
   <li> <a href="auteur">AUTEUR</a> </li>
+  <li> <a href="etudiants">ETUDIANTS</a> </li>
   <li> AUTRES </li>
 </ul>
