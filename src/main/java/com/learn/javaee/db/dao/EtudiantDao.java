@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 
 import com.learn.javaee.db.interfacesdao.IEtudiantDao;
 import com.learn.javaee.db.utils.DaoFactory;
+import com.learn.javaee.exception.DaoException;
 import com.learnjavaee.models.beans.EtudiantBean;
 
 public class EtudiantDao implements IEtudiantDao, Serializable{
@@ -31,7 +32,7 @@ public class EtudiantDao implements IEtudiantDao, Serializable{
 	/**
 	 * Recupérer la liste des étudiants en base
 	 */
-	public List<EtudiantBean> getAllEtudiants() {
+	public List<EtudiantBean> getAllEtudiants() throws DaoException{
 		List<EtudiantBean> etudiants = new ArrayList<>();
 		String query = "SELECT id, nom, prenom, sexe "
 				+ " FROM ETUDIANT";
@@ -48,7 +49,12 @@ public class EtudiantDao implements IEtudiantDao, Serializable{
 			}
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
-			Logger.getLogger(EtudiantDao.class.getName()).log(Level.SEVERE, "Erreur d'exécution de la requete :   {0}.'", query);
+			if (e instanceof ClassNotFoundException) {
+				throw new DaoException("Erreur de connection à la base car class  non trouvée");
+			} else {
+				Logger.getLogger(EtudiantDao.class.getName()).log(Level.SEVERE, "Erreur d'exécution de la requete :   {0}.'", query);
+				throw new DaoException("Erreur d'exécution de la requête");
+			}
 		}
 		return etudiants;
 	}
@@ -57,7 +63,7 @@ public class EtudiantDao implements IEtudiantDao, Serializable{
 	/**
 	 * Insérer un étudiant dans la base de données
 	 */
-	public List<EtudiantBean> ajouter(EtudiantBean etudiant) throws ClassNotFoundException, SQLException {
+	public List<EtudiantBean> ajouter(EtudiantBean etudiant) throws DaoException {
 		String query = "INSERT INTO ETUDIANT(nom,prenom,sexe) VALUES (?,?,?)";
 		try (Connection connection = this.daoFactory.getConnect();
 				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -65,8 +71,16 @@ public class EtudiantDao implements IEtudiantDao, Serializable{
 			preparedStatement.setString(2, etudiant.getPrenom());
 			preparedStatement.setString(3, etudiant.getSexe());
 			preparedStatement.executeUpdate();
-			return this.getAllEtudiants();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			Logger.getLogger(EtudiantDao.class.getName()).log(Level.SEVERE, "Erreur de connection à la base car class  non trouvée :" +  query);
+			throw new DaoException("Erreur de connection à la base car class  non trouvée");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			Logger.getLogger(EtudiantDao.class.getName()).log(Level.SEVERE, "Erreur d'exécution de la requete :" +  query);
+			throw new DaoException("Erreur d'exécution de la requête");
 		}
+		return this.getAllEtudiants();
 	}
 	
 }

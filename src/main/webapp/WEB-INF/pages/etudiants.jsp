@@ -16,6 +16,11 @@
 			</c:forEach>
 		</c:if>
 		<h1>Ajouter un étudiant</h1>
+		<div style="color: red;">
+			<c:if test="${!empty erreur}">
+				<c:out value="${erreur}"/>
+			</c:if>
+		</div>
 		<form action="etudiants" method="post">
 			<div>
 				<label for="nom">Nom</label>

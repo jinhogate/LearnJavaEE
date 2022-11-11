@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import com.learn.javaee.db.interfacesdao.IEtudiantDao;
 import com.learn.javaee.db.utils.DaoFactory;
+import com.learn.javaee.exception.DaoException;
 import com.learnjavaee.models.beans.EtudiantBean;
 
 public class EtudiantFacade implements Serializable {
@@ -28,22 +29,21 @@ public class EtudiantFacade implements Serializable {
 	/**
 	 * Fait appel au Dao et recupère la liste des étudiants
 	 * @return
+	 * @throws DaoException 
 	 */
-	public List<EtudiantBean> getAllEtudiants(){
+	public List<EtudiantBean> getAllEtudiants() throws DaoException{
 		return dao.getAllEtudiants();
 	}
 	
 	/**
 	 * Insérer un étudiant en base
 	 * @param etudiant
+	 * @throws DaoException 
 	 */
-	public List<EtudiantBean> ajouterEtudiant(EtudiantBean etudiant) {
-		try {
-			return dao.ajouter(etudiant);
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-			Logger.getLogger(EtudiantFacade.class.getName()).log(Level.SEVERE, "Erreur d'insertion dans la base de donnée de l'étudiant : {0}",etudiant.getId());
+	public List<EtudiantBean> ajouterEtudiant(EtudiantBean etudiant) throws DaoException {
+		if(etudiant.getNom().length()>10) {
+			throw  new DaoException("Le nom de l'étudiant ne doit pas dépasser 10 caractères");
 		}
-		return new ArrayList<>();
+		return dao.ajouter(etudiant);
 	}
 }

@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.learn.javaee.exception.DaoException;
 import com.learnjavaee.metier.facade.EtudiantFacade;
 import com.learnjavaee.models.beans.EtudiantBean;
 
@@ -29,7 +30,11 @@ public class EtudiantServlet extends HttpServlet {
 	 */
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	request.setAttribute("etudiants", etudiantFacade.getAllEtudiants());
+    	try {
+			request.setAttribute("etudiants", etudiantFacade.getAllEtudiants());
+		} catch (DaoException e) {
+			request.setAttribute("erreur", e.getMessage());
+		}
     	request.getServletContext().getRequestDispatcher("/WEB-INF/pages/etudiants.jsp").forward(request, response);
 	}
 
@@ -42,7 +47,11 @@ public class EtudiantServlet extends HttpServlet {
     	etudiant.setNom(request.getParameter("nom"));
     	etudiant.setPrenom(request.getParameter("prenom"));
     	etudiant.setSexe(request.getParameter("sexe"));
-    	request.setAttribute("etudiants", etudiantFacade.ajouterEtudiant(etudiant));
+    	try {
+			request.setAttribute("etudiants", etudiantFacade.ajouterEtudiant(etudiant));
+		} catch (DaoException e) {
+			request.setAttribute("erreur", e.getMessage());
+		}
     	request.getServletContext().getRequestDispatcher("/WEB-INF/pages/etudiants.jsp").forward(request, response);
 	}
 

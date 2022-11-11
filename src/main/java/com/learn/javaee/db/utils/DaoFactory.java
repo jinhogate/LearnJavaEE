@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 import com.learn.javaee.db.dao.EtudiantDao;
 
-public class DaoFactory implements Serializable{
+public final class DaoFactory implements Serializable{
 	/**
 	 * 
 	 */
